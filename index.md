@@ -1,5 +1,5 @@
 ---
-title       : Visualization of Japan Population Estimates
+title       : Visualization of Japan Population Estimates/2
 subtitle    : 1970 - 2010
 author      : smjb
 job         : Coursera Data Science Specialization, John Hopkins University
