@@ -1,0 +1,124 @@
+---
+title       : Visualization of Japan Population Estimates
+subtitle    : 1970 - 2010
+author      : smjb
+job         : Coursera Data Science Specialization, John Hopkins University
+date        : Sept 2015
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Introduction to Japan Population Estimates
+
+1. The problem we want to visualize today is how the demographics of Japan has evolved between 1970 to 2010. We are particularly interested on Population growth (or decline) and on the Age of the population.
+2. The data is downloaded from [Statistics Bureau](http://www.stat.go.jp/english/data/jinsui/2.htm) via the [Portal Site of Official Statistics of Japan](http://www.e-stat.go.jp/). 
+3. The data we are interested in is the Time Series of the Population by 5-year Age Group for Prefectures [[1](http://www.e-stat.go.jp/SG1/estat/ListE.do?bid=000000090004&cycode=0)],[[2](http://www.e-stat.go.jp/SG1/estat/ListE.do?bid=000001039703&cycode=0)]
+4. This dataset will allow us to Visualize the growth or decline of the Population for each Prefecture, and for each 5-Year Age Group
+5. We can also visualize how the population with the same birth year grows or decline in time
+6. Note that there were 2 reclassification of Age Group between 1970 - 2010
+  * 1980 : Age Group 65+years old reclassified into 70-74, 75-89 and 80+ years old 
+  * 2007 : Age Group 80+years old reclassified into 80-84 and 85+ years old 
+
+
+--- &twocol w1:45% w2:45%
+
+## Population in Japan is growing slower
+The application clearly shows that while the Japanese population is growing, the median age is increasing. New born rate seems to be decreasing resulting slower growth.
+
+*** =left
+
+```{r echo=F, message=F, warning=F,error=F,results='hide', cache=F}
+library(dplyr)
+library(knitr)
+library(ggplot2)
+
+source("reloadData.R")
+```
+```{r jap_pop, echo=F,message=F, warning=F,error=F, fig.height=6}
+  x <- PrefAgePop(1970,2010, 0)
+  p<-ggplot(x, aes(Year, Population/1000))+geom_area()+aes(fill=AgeGroup)
+  p<-p+theme(legend.position="right",panel.background=element_rect(fill="white"))+
+    labs(y="Population (millions)", title=paste("Evolution of Population by Age Group in Japan"))+
+    guides(fill=guide_legend(title="Age Group", reverse=TRUE))
+  p
+```
+
+*** =right
+
+```{r jap_pop_pct, echo=F,message=F, warning=F,error=F, fig.height=6}
+   q<-ggplot(x, aes(Year, PopPct))+geom_area()+aes(fill=AgeGroup)
+   q<-q+theme(legend.position="right",panel.background=element_rect(fill="white"))+
+     labs(y="Population, %", title=paste("Evolution of Age Group Distribution in Japan"))+
+     guides(fill=guide_legend(title="Age Group", reverse=TRUE))
+   q
+```
+
+--- &twocol w1:45% w2:45%
+
+## The population is getting older
+
+The application demonstrates that the proportion of older Age Group in Japan is growing while the proportion of the younger Age Group is decreasing. The percentage of Age Group 70 - 75 years old surpassed the Age Group 0 - 4 years old somewhere in 2003.
+
+*** =left
+
+```{r jap_age, echo=F,message=F, warning=F,error=F, fig.height=5.5}
+    yr = getAgeGroupName(1)
+    qstat <- getAgeQuantileStat(yr)
+    g <- ggplot(qstat, aes(as.factor(Year), PopPct))+geom_boxplot()+xlab("Year")+
+      ylab("Population, %")
+    g<-g+labs(title=paste("Age Group",yr,"Population across Japan"))
+    g<-g+theme(panel.background=element_rect(fill="white"), legend.position="none")+
+      aes(fill=as.factor(Year))
+    g<-g+theme(axis.text.x=element_text(angle=90)) + ylim(0,12)
+    g
+```
+
+*** =right
+
+```{r jap_age2, echo=F,message=F, warning=F,error=F, fig.height=5.5}
+    yr = getAgeGroupName(16) #75/5
+    qstat <- getAgeQuantileStat(yr)
+    h <- ggplot(qstat, aes(as.factor(Year), PopPct))+geom_boxplot()+xlab("Year")+
+      ylab("Population, %")
+    h<-h+labs(title=paste("Age Group",yr,"Population across Japan"))
+    h<-h+theme(panel.background=element_rect(fill="white"), legend.position="none")+
+      aes(fill=as.factor(Year))
+    h<-h+theme(axis.text.x=element_text(angle=90)) + ylim(0,12)
+    h
+
+```
+
+--- &twocol w1:45% w2:45%
+
+## Population migration happens at age 20-30 yrs old
+
+The application tracks the total population of habitants with the same year of birth (Each line is for one year of birth). Increasing slope is due to immigration while decreasing slope are due to emigration and natural causes. The movement at this age range is most likely due to tertiary education and entering the job market in another city.
+*** =left
+
+```{r jap_age_track, echo=F,message=F, warning=F,error=F, fig.height=5}
+    x <- getBornYearStat(1970, 2010, 5)      # 5 == Akita-ken
+    r <- ggplot(x, aes(MinAge,Population/1000))+geom_line()+aes(colour=factor(BornYear))+
+      #guides(col=guide_legend(ncol=6, title="Year Born", reverse=TRUE))
+      theme(legend.position="none")
+    r<-r+theme(panel.background=element_rect(fill="white"))
+    r<-r+labs(x="Age during Census",y="Population, (millions)", 
+              title=paste("Age vs Population Proportion tracking by Year of Birth in Akita-ken"))
+    r
+```
+
+*** =right
+
+```{r jap_age_track2, echo=F,message=F, warning=F,error=F, fig.height=5}
+    x <- getBornYearStat(1970, 2010, 26)      # 11 == Saitama-ken
+    r <- ggplot(x, aes(MinAge,Population/1000))+geom_line()+aes(colour=factor(BornYear))+
+      #guides(col=guide_legend(ncol=6, title="Year Born", reverse=TRUE))
+      theme(legend.position="none")
+    r<-r+theme(panel.background=element_rect(fill="white"))
+    r<-r+labs(x="Age during Census",y="Population (millions)", 
+              title=paste("Age vs Population Proportion tracking by Year of Birth in Kyoto-ken"))
+    r
+```

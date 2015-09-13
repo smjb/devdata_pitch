@@ -1,0 +1,23 @@
+<slide class="{{ slide.class }}" id="{{ slide.id }}" style="background:{{{ slide.bg }}};">
+  {{# slide.header }}
+  <hgroup>
+    {{{ slide.header}}}
+  </hgroup>
+  {{/ slide.header }}
+  <article data-timings="{{ slide.dt }}">
+  <hr noshade size=4 color='green'>  
+    {{{ slide.content }}}
+  </article>
+      <footer style='color:gren;font-size:8pt'>
+	Copyright 2015, smjb : For Developing Data Products, Data Science Specialization
+  </footer>
+  <!-- Presenter Notes -->
+  {{# slide.pnotes }}
+  <aside class="note" id="{{ id }}">
+    <section>
+      {{{ html }}}
+    </section>
+  </aside>
+  {{/ slide.pnotes }}
+</slide>
+

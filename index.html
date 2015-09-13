@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visualization of Japan Population Estimates</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Visualization of Japan Population Estimates">
+  <meta name="author" content="smjb">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Visualization of Japan Population Estimates</h1>
+    <h2>1970 - 2010</h2>
+    <p>smjb<br/>Coursera Data Science Specialization, John Hopkins University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction to Japan Population Estimates</h2>
+  </hgroup>
+  <article data-timings="">
+  <hr noshade size=4 color='green'>  
+    <ol>
+<li>The problem we want to visualize today is how the demographics of Japan has evolved between 1970 to 2010. We are particularly interested on Population growth (or decline) and on the Age of the population.</li>
+<li>The data is downloaded from <a href="http://www.stat.go.jp/english/data/jinsui/2.htm">Statistics Bureau</a> via the <a href="http://www.e-stat.go.jp/">Portal Site of Official Statistics of Japan</a>. </li>
+<li>The data we are interested in is the Time Series of the Population by 5-year Age Group for Prefectures [<a href="http://www.e-stat.go.jp/SG1/estat/ListE.do?bid=000000090004&amp;cycode=0">1</a>],[<a href="http://www.e-stat.go.jp/SG1/estat/ListE.do?bid=000001039703&amp;cycode=0">2</a>]</li>
+<li>This dataset will allow us to Visualize the growth or decline of the Population for each Prefecture, and for each 5-Year Age Group</li>
+<li>We can also visualize how the population with the same birth year grows or decline in time</li>
+<li>Note that there were 2 reclassification of Age Group between 1970 - 2010
+
+<ul>
+<li>1980 : Age Group 65+years old reclassified into 70-74, 75-89 and 80+ years old </li>
+<li>2007 : Age Group 80+years old reclassified into 80-84 and 85+ years old </li>
+</ul></li>
+</ol>
+
+  </article>
+      <footer style='color:gren;font-size:8pt'>
+	Copyright 2015, smjb : For Developing Data Products, Data Science Specialization
+  </footer>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2">
+  <hgroup>
+    <h2>Population in Japan is growing slower</h2>
+  </hgroup>
+  <article>
+    <hr noshade size=4 color='green'>  
+    <p>The application clearly shows that while the Japanese population is growing, the median age is increasing. New born rate seems to be decreasing resulting slower growth.</p>
+  
+    <div class='left' style='float:left;width:48%'>
+     <p><img src="assets/fig/jap_pop-1.png" alt="plot of chunk jap_pop"> </p>
+
+    </div>    
+    <div class='right' style='float:right;width:48%'>
+     <p><img src="assets/fig/jap_pop_pct-1.png" alt="plot of chunk jap_pop_pct"> </p>
+
+    </div>
+  </article>
+    <footer style='color:green;font-size:8pt'>
+	Copyright 2015, smjb : For Developing Data Products, Data Science Specialization
+  </footer>
+</slide>
+<slide class="" id="slide-3">
+  <hgroup>
+    <h2>The population is getting older</h2>
+  </hgroup>
+  <article>
+    <hr noshade size=4 color='green'>  
+    <p>The application demonstrates that the proportion of older Age Group in Japan is growing while the proportion of the younger Age Group is decreasing. The percentage of Age Group 70 - 75 years old surpassed the Age Group 0 - 4 years old somewhere in 2003.</p>
+  
+    <div class='left' style='float:left;width:48%'>
+     <p><img src="assets/fig/jap_age-1.png" alt="plot of chunk jap_age"> </p>
+
+    </div>    
+    <div class='right' style='float:right;width:48%'>
+     <p><img src="assets/fig/jap_age2-1.png" alt="plot of chunk jap_age2"> </p>
+
+    </div>
+  </article>
+    <footer style='color:green;font-size:8pt'>
+	Copyright 2015, smjb : For Developing Data Products, Data Science Specialization
+  </footer>
+</slide>
+<slide class="" id="slide-4">
+  <hgroup>
+    <h2>Population migration happens at age 20-30 yrs old</h2>
+  </hgroup>
+  <article>
+    <hr noshade size=4 color='green'>  
+    <p>The application tracks the total population of habitants with the same year of birth (Each line is for one year of birth). Increasing slope is due to immigration while decreasing slope are due to emigration and natural causes. The movement at this age range is most likely due to tertiary education and entering the job market in another city.</p>
+  
+    <div class='left' style='float:left;width:48%'>
+     <p><img src="assets/fig/jap_age_track-1.png" alt="plot of chunk jap_age_track"> </p>
+
+    </div>    
+    <div class='right' style='float:right;width:48%'>
+     <p><img src="assets/fig/jap_age_track2-1.png" alt="plot of chunk jap_age_track2"> </p>
+
+    </div>
+  </article>
+    <footer style='color:green;font-size:8pt'>
+	Copyright 2015, smjb : For Developing Data Products, Data Science Specialization
+  </footer>
+</slide>
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction to Japan Population Estimates'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Population in Japan is growing slower'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='The population is getting older'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Population migration happens at age 20-30 yrs old'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
