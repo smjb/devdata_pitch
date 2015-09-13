@@ -22,7 +22,6 @@ knit        : slidify::knit2slides
 6. Note that there were 2 reclassification of Age Group between 1970 - 2010
   * 1980 : Age Group 65+years old reclassified into 70-74, 75-89 and 80+ years old 
   * 2007 : Age Group 80+years old reclassified into 80-84 and 85+ years old 
-hello
 
 --- &twocol w1:45% w2:45%
 
@@ -56,7 +55,7 @@ The application demonstrates that the proportion of older Age Group in Japan is 
 
 ## Population migration happens at age 20-30 yrs old
 
-The application tracks the total population of habitants with the same year of birth (Each line is for one year of birth). Increasing slope is due to immigration while decreasing slope are due to emigration and natural causes. The movement at this age range is most likely due to tertiary education and entering the job market in another city.
+The application tracks the total population of habitants with the same year of birth (Each line is for one year of birth). Increasing slope is due to immigration while decreasing slope are due to emigration and natural causes. The movement at this age range is most likely due to tertiary education and entering the job market in another city. Note that the spikes at the old ages are due to the Age Group reclassifications.
 *** =left
 
 ![plot of chunk jap_age_track](assets/fig/jap_age_track-1.png) 
